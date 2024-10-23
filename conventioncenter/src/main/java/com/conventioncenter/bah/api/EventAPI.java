@@ -13,7 +13,7 @@ import com.conventioncenter.bah.persistence.InMemoryEventRepository;
 public class EventAPI {
 	
 	
-	@GetMapping("/events/id/{id}")
+	@GetMapping("/events/{id}")
 	public Event getEvent(@PathVariable("id")Long id) {
 		InMemoryEventRepository events = new InMemoryEventRepository();
 		return events.findById(id);

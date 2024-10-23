@@ -13,7 +13,7 @@ import com.conventioncenter.bah.persistence.InMemoryRegistrationRepository;
 public class RegistrationApi {
 
 	
-	@GetMapping("/registration/id/{id}")
+	@GetMapping("/registration/{id}")
 	public Registration getCustomer(@PathVariable("id")Long id) {
 		System.out.println("ID = " + id);
 		InMemoryRegistrationRepository registration = new InMemoryRegistrationRepository();

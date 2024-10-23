@@ -11,7 +11,7 @@ import com.conventioncenter.bah.persistence.InMemoryCustomerRepository;
 
 @RestController
 public class CustomerApi {
-	@GetMapping("/customers/id/{id}")
+	@GetMapping("/customers/{id}")
 	public Customer getCustomer(@PathVariable("id")Long id) {
 		InMemoryCustomerRepository customers = new InMemoryCustomerRepository();
 		return customers.findById(id);
