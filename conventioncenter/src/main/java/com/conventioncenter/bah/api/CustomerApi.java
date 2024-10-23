@@ -15,7 +15,7 @@ public class CustomerApi {
 	
 	InMemoryCustomerRepository customers;
 	
-	@GetMapping("/customers/id/{id}")
+	@GetMapping("/customers/{id}")
 	public Customer getCustomer(@PathVariable("id")Long id) {
 		System.out.println("ID = " + id);
 		customers = new InMemoryCustomerRepository();
