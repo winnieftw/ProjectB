@@ -1,15 +1,17 @@
 package com.conventioncenter.bah.domain;
 
+import java.util.Date;
+
 public class Registration {
 	Long id;
 	int event_id;
 	int customer_id;
-	String date;
+	Date date;
 	String notes;
 	
 	
 	
-	public Registration(Long id, int event_id, int customer_id, String date, String notes) {
+	public Registration(Long id, int event_id, int customer_id, Date date, String notes) {
 		super();
 		this.id = id;
 		this.event_id = event_id;
@@ -36,10 +38,10 @@ public class Registration {
 	public void setCustomer_id(int customer_id) {
 		this.customer_id = customer_id;
 	}
-	public String getDate() {
+	public Date getDate() {
 		return date;
 	}
-	public void setDate(String date) {
+	public void setDate(Date date) {
 		this.date = date;
 	}
 	public String getNotes() {
