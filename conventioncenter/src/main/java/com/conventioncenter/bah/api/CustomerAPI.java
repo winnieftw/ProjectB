@@ -89,7 +89,15 @@ public class CustomerAPI {
 		//  Workshop:  Write an implementation to update or create a new customer with an HTTP PUT, with the 
 		//  requestor specifying the customer ID.  Are there error conditions to be handled?  How much data
 		//  validation should you implement considering that customers are stored in a CustomersRepository object.
-		return null;
+		if(newCustomer.getId() != customerId ||
+				newCustomer.getName() == null ||
+				newCustomer.getEmail() == null ||
+				newCustomer.getPassword() == null) {
+			return ResponseEntity.badRequest().build();
+		}
+		newCustomer=repo.save(newCustomer);
+		return ResponseEntity.ok().build();
+
 	}	
 	
 	@DeleteMapping("/{customerId}")
@@ -100,7 +108,12 @@ public class CustomerAPI {
 		//  a "delete"?  Is it always the right thing from a business point of view to literally 
 		//  delete a customer entry?  If you did actually delete a customer entry, are there issues
 		//  you could potentially run into later? 
-		return null;
+//		if (repo.findById(id).isPresent()) { // Reject - we'll assign the customer id
+//				    return ResponseEntity.badRequest().build();
+//			}
+		repo.deleteById(id);
+		return ResponseEntity.noContent().build();
+				
 	}	
 	
 	
