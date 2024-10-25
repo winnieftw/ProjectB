@@ -1,4 +1,4 @@
-package com.webage.api;
+package com.conventioncenter.bah.api;
 
 import java.util.Optional;
 
@@ -15,7 +15,7 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.util.UriComponentsBuilder;
 
 import com.conventioncenter.bah.domain.Customer;
-import com.webage.repository.CustomersRepository;
+import com.conventioncenter.bah.repository.CustomersRepository;
 
 @RestController
 @RequestMapping("/customers")

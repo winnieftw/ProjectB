@@ -1,10 +1,7 @@
-package com.webage.api;
+package com.conventioncenter.bah.api;
 
-import java.net.URI;
 import java.util.Optional;
 
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -14,17 +11,15 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 import org.springframework.web.util.UriComponentsBuilder;
 
-import com.webage.domain.Event;
-import com.webage.repository.EventRepository;
+import com.conventioncenter.bah.domain.Event;
 
 @RestController
 @RequestMapping("/events")
 public class EventAPI {
-	@Autowired
-	EventRepository repo;
+	//@Autowired
+	//EventRepository repo;
 
 	@GetMapping
 	public Iterable<Event> getAll() {
@@ -62,21 +57,7 @@ public class EventAPI {
 	
 }
 
-/*package com.conventioncenter.bah.api;
-
-import java.util.List;
-
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RestController;
-
-import com.conventioncenter.bah.domain.Event;
-import com.conventioncenter.bah.persistence.InMemoryEventRepository;
-
-@RestController
-public class EventAPI {
-	
-	
+/*
 	@GetMapping("/events/{id}")
 	public Event getEvent(@PathVariable("id")Long id) {
 		InMemoryEventRepository events = new InMemoryEventRepository();
