@@ -1,9 +1,26 @@
 package com.conventioncenter.bah.domain;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.Table;
+
+@Entity
+@Table(name="CUSTOMER")
 public class Customer {
+	@Id
+	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	Long id;
+	
+	@Column(name="NAME")
 	String name;
+	
+	@Column(name="EMAIL")
 	String email;
+	
+	@Column(name="PASSWORD")
 	String password;
 	
 	public Customer(Long id, String name, String email, String password) {

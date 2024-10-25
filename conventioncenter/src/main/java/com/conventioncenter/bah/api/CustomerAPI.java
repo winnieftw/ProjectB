@@ -1,6 +1,7 @@
 package com.conventioncenter.bah.api;
 
 import java.util.Optional;
+import java.net.URI;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -12,6 +13,7 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 import org.springframework.web.util.UriComponentsBuilder;
 
 import com.conventioncenter.bah.domain.Customer;
@@ -25,28 +27,30 @@ public class CustomerAPI {
 
 	@GetMapping
 	public Iterable<Customer> getAll() {
-		//  Workshop:  Write an implementation that replies with all customers.
-		//  Your implementation should be no more than a few lines, at most, and make use of the 'repo' object
-		return null;   
+		return repo.findAll();   
 	}
 
 	@GetMapping("/{customerId}")
 	public Optional<Customer> getCustomerById(@PathVariable("customerId") long id) {
-		//  Workshop:  Write an implementatoin that looks up one customer.  What do you return if the requested 
-		//  customer ID does not exists?  This implementation could be as short as a single line.
-		return null;
+		return repo.findById(id);
 	}
 	
 	@PostMapping
 	public ResponseEntity<?> addCustomer(@RequestBody Customer newCustomer, UriComponentsBuilder uri) {
-		//  Workshop:  Write an implementation that adds a new customer.  Your
-		//  implementation should check to make sure that the name and email fields are
-		//  not null and that no id was passed (it will be auto generated when the record
-		//  is inserted.  Remember REST semantics - return a reference to the newly created 
-		//  entity as a URI.
-		return null;
+		if (newCustomer.getId()!=0
+			|| newCustomer.getName()==null
+			|| newCustomer.getEmail() == null
+			|| newCustomer.getPassword() == null) { // Reject - we'll assign the customer id
+			    return ResponseEntity.badRequest().build();
+		}
+	  newCustomer=repo.save(newCustomer);
+	  URI location=ServletUriComponentsBuilder.fromCurrentRequest()
+	    .path("/{id}").buildAndExpand(newCustomer.getId()).toUri();
+	  ResponseEntity<?> response=ResponseEntity.created(location).build();
+	  return response;
 	}
 
+	/*
 	//lookupCustomerByName GET
 	@GetMapping("/byname/{username}")
 	public ResponseEntity<?> lookupCustomerByNameGet(@PathVariable("username") String username,
@@ -55,6 +59,15 @@ public class CustomerAPI {
 		//  your response should be if no customer matches the name the caller is searching for.
 		//  With the data model implemented in CustomersRepository, do you need to handle more than
 		//  one match per request?
+		Iterable<Customer> customers = repo.findAll();
+		for(Customer customer: customers) {
+			if(customer.getName().equals(username)) {
+				URI location=ServletUriComponentsBuilder.fromCurrentRequest()
+					    .path("/{username}").buildAndExpand(customer.getName()).toUri();
+				ResponseEntity<?> response=ResponseEntity.created(location).build();
+				return response;
+			}
+		}
 		return null;
 	}
 	
@@ -66,7 +79,7 @@ public class CustomerAPI {
 		//  lookupCustomerByNameGet().  
 		return null;
 	}	
-	
+	*/
 	
 	@PutMapping("/{customerId}")
 	public ResponseEntity<?> putCustomer(

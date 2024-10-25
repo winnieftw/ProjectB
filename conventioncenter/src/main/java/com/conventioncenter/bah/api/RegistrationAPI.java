@@ -17,15 +17,15 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 import org.springframework.web.util.UriComponentsBuilder;
 
-import com.conventioncenter.bah.repository.RegistrationRepository;
+//import com.conventioncenter.bah.repository.RegistrationRepository;
 import com.conventioncenter.bah.domain.Registration;
 
 @RestController
 @RequestMapping("/registrations")
 public class RegistrationAPI {
 
-	@Autowired
-	RegistrationRepository repo;
+	//@Autowired
+	//RegistrationRepository repo;
 
 	@GetMapping
 	public Iterable<Registration> getAll() {
