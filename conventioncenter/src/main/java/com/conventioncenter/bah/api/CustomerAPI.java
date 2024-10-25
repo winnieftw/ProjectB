@@ -97,7 +97,6 @@ public class CustomerAPI {
 		}
 		newCustomer=repo.save(newCustomer);
 		return ResponseEntity.ok().build();
-
 	}	
 	
 	@DeleteMapping("/{customerId}")
@@ -118,20 +117,3 @@ public class CustomerAPI {
 	
 	
 }
-
-/*
-@RestController
-public class CustomerApi {
-	@GetMapping("/customers/{id}")
-	public Customer getCustomer(@PathVariable("id")Long id) {
-		InMemoryCustomerRepository customers = new InMemoryCustomerRepository();
-		return customers.findById(id);
-	}
-	
-	@GetMapping("/customers")
-	public List<Customer> getAllCustomers(){
-		InMemoryCustomerRepository customers = new InMemoryCustomerRepository();
-		return customers.getAll();
-	}
-
-}\*/
