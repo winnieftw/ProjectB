@@ -2,14 +2,29 @@ package com.conventioncenter.bah.domain;
 
 import java.util.Date;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.Table;
+
+@Entity
+@Table(name="REGISTRATIONS")
 public class Registration {
+	@Id
+	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	Long id;
 	int event_id;
 	int customer_id;
+	
+	@Column(name="REGISTRATION_DATE")
 	Date date;
 	String notes;
 	
-	
+	public Registration() {
+		// TODO Auto-generated constructor stub
+	}
 	
 	public Registration(Long id, int event_id, int customer_id, Date date, String notes) {
 		super();
