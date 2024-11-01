@@ -67,7 +67,6 @@ public class CustomerAPI {
 		}
 		return Optional.empty();
 	}
-	
 	/*
 	//lookupCustomerByName POST
 	@PostMapping("/byname")
