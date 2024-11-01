@@ -50,10 +50,10 @@ public class CustomerAPI {
 	  return response;
 	}
 
-	/*
+	
 	//lookupCustomerByName GET
 	@GetMapping("/byname/{username}")
-	public ResponseEntity<?> lookupCustomerByNameGet(@PathVariable("username") String username,
+	public Optional<Customer> lookupCustomerByNameGet(@PathVariable("username") String username,
 			UriComponentsBuilder uri) {
 		//  Workshop:  Write an implemenatation to look up a customer by name.  Think about what
 		//  your response should be if no customer matches the name the caller is searching for.
@@ -62,15 +62,13 @@ public class CustomerAPI {
 		Iterable<Customer> customers = repo.findAll();
 		for(Customer customer: customers) {
 			if(customer.getName().equals(username)) {
-				URI location=ServletUriComponentsBuilder.fromCurrentRequest()
-					    .path("/{username}").buildAndExpand(customer.getName()).toUri();
-				ResponseEntity<?> response=ResponseEntity.created(location).build();
-				return response;
+				return Optional.of(customer);
 			}
 		}
-		return null;
+		return Optional.empty();
 	}
 	
+	/*
 	//lookupCustomerByName POST
 	@PostMapping("/byname")
 	public ResponseEntity<?> lookupCustomerByNamePost(@RequestBody String username, UriComponentsBuilder uri) {
@@ -78,8 +76,8 @@ public class CustomerAPI {
 		//  rather than GET.  You should be able to make use of most of your implmentation for
 		//  lookupCustomerByNameGet().  
 		return null;
-	}	
-	*/
+	}	*/
+	
 	
 	@PutMapping("/{customerId}")
 	public ResponseEntity<?> putCustomer(
