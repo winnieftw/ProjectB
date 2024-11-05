@@ -18,7 +18,7 @@ public class CustomerAPIJUnitIntegrationTest {
 	@DisplayName("Ensures that the api returns OK status code 200")
     public void ensureThatUserAPICallReturnStatusCode200() throws Exception {
         HttpClient client = HttpClient.newBuilder().build();
-        HttpRequest request = HttpRequest.newBuilder().uri(URI.create("http://localhost:8080/api/customers")).build();
+        HttpRequest request = HttpRequest.newBuilder().uri(URI.create("http://localhost:8080/api/customers/")).build();
         HttpResponse<String> response = client.send(request, BodyHandlers.ofString());
         assertThat(response.statusCode()).isEqualTo(200);
 
@@ -44,7 +44,7 @@ public class CustomerAPIJUnitIntegrationTest {
         String body = response.body();
         // For easy to see the output
         System.out.println(body);
-        assertTrue(body.contains("name\":\"steve\""));
+        assertTrue(body.contains("name\":\"Bruce\""));
         
     }
 
