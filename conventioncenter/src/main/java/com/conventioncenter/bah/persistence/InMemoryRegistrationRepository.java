@@ -1,4 +1,4 @@
-package com.conventioncenter.bah.persistence;
+/*package com.conventioncenter.bah.persistence;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -27,4 +27,4 @@ public class InMemoryRegistrationRepository {
 	public List<Registration> getAll(){
 		return registrationData;
 	}
-}
+}*/
