@@ -6,7 +6,13 @@ plugins {
 
 group = 'com.bah.msd'
 version = '0.0.1-SNAPSHOT'
-sourceCompatibility = '1.8'
+
+java {
+	toolchain {
+		languageVersion = JavaLanguageVersion.of(11)
+	}
+}
+//sourceCompatibility = '1.8'
 
 repositories {
 	mavenCentral()
