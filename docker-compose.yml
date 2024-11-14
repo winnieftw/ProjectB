@@ -19,5 +19,14 @@ services:
       API_HOST: "dataapi:8080"
     networks:
       - mcc-network
+  react:
+    build:
+      context: ./project-react-client
+    image: bah-react:v1.0
+    ports:
+      - 80:80
+    networks:
+      - mcc-network
+   
 networks:
   mcc-network:
